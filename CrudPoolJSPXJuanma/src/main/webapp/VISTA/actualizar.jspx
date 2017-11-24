@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<jsp:root   xmlns:jsp="http://java.sun.com/JSP/Page"
+            xmlns:c="http://java.sun.com/jsp/jstl/core"
+            version="2.1">
+    <jsp:directive.page contentType="text/html; charset=UTF-8" />
+    <jsp:directive.page isELIgnored="false" />
+    <jsp:output omit-xml-declaration="false"
+                doctype-root-element="html"
+                doctype-public="-//W3C//DTD XHTML 1.1//EN"
+                doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd" />
+    <c:set var="contexto" value="${pageContext.request.contextPath}" />
+    <html>
+        <header>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <link rel="stylesheet" href="${contexto}/CSS/conjunto.css"/>
+            <title>actualizar</title>
+        </header>
+        <body>
+            <h1>${sessionScope.valor}</h1>
+            <form method="post" action="../CONTROLADOR/actualizarcontrol.jspx">
+            <table>
+             <c:forEach var="registro" items="${sessionScope.registros.rows}">
+                 <tr>
+                     <td><input name="idcliente" type="radio" value="${registro.idcliente}" selected="selected"/></td>
+                     <td><p>${registro.nombre}</p></td>
+                     <td><p>${registro.apellidos}</p></td>
+                     <td><p>${registro.direccion}</p></td>
+                     <td><p>${registro.telefono}</p></td>
+                 </tr>
+             </c:forEach>   
+            </table>
+            
+            <table>
+                <tr>
+                    <td><p>Nombre: </p></td>
+                    <td><p><input type="text" name="nombre" /></p></td>
+                </tr>
+                <tr>
+                    <td><p>Apellidos: </p></td>
+                    <td><p><input type="text" name="apellidos" /></p></td>
+                </tr>
+                <tr>
+                    <td><p>Dirección: </p></td>
+                    <td><p><input type="text" name="direccion" /></p></td>
+                </tr>
+                <tr>
+                    <td><p>Teléfono: </p></td>
+                    <td><p><input type="text" name="telefono" /></p></td>
+                </tr>
+            </table>
+            <input type="submit" value="Enviar" name="comprobado" />
+        </form>
+        </body>
+    </html>
+</jsp:root>
